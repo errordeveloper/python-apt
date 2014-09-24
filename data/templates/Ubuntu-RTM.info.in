@@ -1,0 +1,68 @@
+Suite: devel
+RepositoryType: deb
+BaseURI: http://derived.archive.canonical.com/ubuntu-rtm/
+MatchURI: derived.archive.canonical.com/ubuntu-rtm
+_Description: Ubuntu RTM development series
+Component: main
+_CompDescription: Officially supported
+_CompDescriptionLong: Canonical-supported free and open-source software
+Component: universe
+_CompDescription: Community-maintained
+_CompDescriptionLong: Community-maintained free and open-source software
+Component: restricted
+_CompDescription: Non-free drivers
+_CompDescriptionLong: Proprietary drivers for devices
+Component: multiverse
+ParentComponent: universe
+_CompDescription: Restricted software
+_CompDescriptionLong: Software restricted by copyright or legal issues
+
+Suite: devel
+ParentSuite: devel
+RepositoryType: deb-src
+_Description: Ubuntu RTM development series
+
+Suite: devel-proposed
+ParentSuite: devel
+RepositoryType: deb
+_Description: Pre-released updates
+
+Suite: devel-proposed
+ParentSuite: devel
+RepositoryType: deb-src
+_Description: Pre-released updates
+
+
+Suite: 14.09
+RepositoryType: deb
+BaseURI: http://derived.archive.canonical.com/ubuntu-rtm/
+MatchURI: derived.archive.canonical.com/ubuntu-rtm
+_Description: Ubuntu RTM 14.09
+Component: main
+_CompDescription: Officially supported
+_CompDescriptionLong: Canonical-supported free and open-source software
+Component: universe
+_CompDescription: Community-maintained
+_CompDescriptionLong: Community-maintained free and open-source software
+Component: restricted
+_CompDescription: Non-free drivers
+_CompDescriptionLong: Proprietary drivers for devices
+Component: multiverse
+ParentComponent: universe
+_CompDescription: Restricted software
+_CompDescriptionLong: Software restricted by copyright or legal issues
+
+Suite: 14.09
+ParentSuite: 14.09
+RepositoryType: deb-src
+_Description: Ubuntu RTM 14.09
+
+Suite: 14.09-proposed
+ParentSuite: 14.09
+RepositoryType: deb
+_Description: Pre-released updates
+
+Suite: 14.09-proposed
+ParentSuite: 14.09
+RepositoryType: deb-src
+_Description: Pre-released updates
