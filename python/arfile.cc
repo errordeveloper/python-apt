@@ -349,8 +349,8 @@ static PyObject *ararchive_gettar(PyArArchiveObject *self, PyObject *args)
         return 0;
     }
 
-    PyTarFileObject *tarfile = (PyTarFileObject*)CppPyObject_NEW<ExtractTar*>(self,&PyTarFile_Type);
-    new (&tarfile->Fd) FileFd(self->Fd->Object);
+    PyTarFileObject *tarfile = (PyTarFileObject*)CppPyObject_NEW<ExtractTar*>(self->Fd,&PyTarFile_Type);
+    new (&tarfile->Fd) FileFd(self->Fd->Object.Fd());
     tarfile->min = member->Start;
     tarfile->Object = new ExtractTar(self->Fd->Object, member->Size, comp);
     return HandleErrors(tarfile);
@@ -560,8 +560,8 @@ static PyObject *_gettar(PyDebFileObject *self, const ARArchive::Member *m,
 {
     if (!m)
         return 0;
-    PyTarFileObject *tarfile = (PyTarFileObject*)CppPyObject_NEW<ExtractTar*>(self,&PyTarFile_Type);
-    new (&tarfile->Fd) FileFd(self->Fd->Object);
+    PyTarFileObject *tarfile = (PyTarFileObject*)CppPyObject_NEW<ExtractTar*>(self->Fd,&PyTarFile_Type);
+    new (&tarfile->Fd) FileFd(self->Fd->Object.Fd());
     tarfile->min = m->Start;
     tarfile->Object = new ExtractTar(self->Fd->Object, m->Size, comp);
     return tarfile;
