@@ -25,6 +25,14 @@ test:
     paths:
     - doc/build/html
 
+test on disco:
+  script:
+  - apt update
+  - apt build-dep -q -y ./
+  - dpkg-buildpackage
+  - make -C doc html
+  image: ubuntu:disco
+
 test on bullseye:
   script:
   - apt update
