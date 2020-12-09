@@ -1,3 +1,18 @@
+python-apt (1.4.2) stretch-security; urgency=high
+
+  * SECURITY UPDATE: various memory and file descriptor leaks (LP: #1899193)
+    - python/arfile.cc, python/generic.h, python/tag.cc, python/tarfile.cc:
+      fix file descriptor and memory leaks
+    - python/apt_instmodule.cc, python/apt_instmodule.h, python/arfile.h:
+      Avoid reference cycle with control,data members in apt_inst.DebFile
+      objects
+    - tests/test_cve_2020_27351.py: Test cases for DebFile (others not easily
+      testable)
+    - CVE-2020-27351
+  * data/templates: Update mirror lists
+
+ -- Julian Andres Klode <jak@debian.org>  Wed, 09 Dec 2020 17:31:32 +0100
+
 python-apt (1.4.1) stretch-security; urgency=high
 
   * SECURITY UPDATE: Check that repository is trusted before downloading
