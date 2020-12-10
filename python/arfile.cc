@@ -152,8 +152,11 @@ PyTypeObject PyFileFd_Type = {
     0,                                   // tp_getattro
     0,                                   // tp_setattro
     0,                                   // tp_as_buffer
-    Py_TPFLAGS_DEFAULT,                  // tp_flags
+    Py_TPFLAGS_DEFAULT |                 // tp_flags
+    Py_TPFLAGS_HAVE_GC,
     filefd_doc,                          // tp_doc
+    CppTraverse<FileFd>,                 // tp_traverse
+    CppClear<FileFd>,                    // tp_clear
 };
 
 
@@ -448,9 +451,23 @@ static PyObject *ararchive_new(PyTypeObject *type, PyObject *args,
     return self.release();
 }
 
+static int ararchive_traverse(PyObject *_self, visitproc visit, void* arg)
+{
+    PyArArchiveObject *self = (PyArArchiveObject*)_self;
+    Py_VISIT(self->Fd);
+    return CppTraverse<ARArchive*>(self, visit, arg);
+}
+
+static int ararchive_clear(PyObject *_self)
+{
+    PyArArchiveObject *self = (PyArArchiveObject*)_self;
+    Py_CLEAR(self->Fd);
+    return CppClear<ARArchive*>(self);
+}
+
 static void ararchive_dealloc(PyObject *self)
 {
-    Py_CLEAR(((PyArArchiveObject *)(self))->Fd);
+    ararchive_clear(self);
     CppDeallocPtr<ARArchive*>(self);
 }
 
@@ -504,8 +521,8 @@ PyTypeObject PyArArchive_Type = {
     Py_TPFLAGS_DEFAULT |                 // tp_flags
     Py_TPFLAGS_HAVE_GC,
     ararchive_doc,                       // tp_doc
-    CppTraverse<ARArchive*>,        // tp_traverse
-    CppClear<ARArchive*>,           // tp_clear
+    ararchive_traverse,                  // tp_traverse
+    ararchive_clear,                     // tp_clear
     0,                                   // tp_richcompare
     0,                                   // tp_weaklistoffset
     (getiterfunc)ararchive_iter,         // tp_iter
