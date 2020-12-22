@@ -56,7 +56,7 @@ class TestCVE_2020_27351(unittest.TestCase):
 
         before = os.listdir("/proc/self/fd")
         Cycle(self.GOOD_DEB).deb.control.extractdata("control")
-        warnings.filterwarnings("ignore", category=ResourceWarning)
+        warnings.filterwarnings("ignore", category=Warning)
         gc.collect()
         warnings.resetwarnings()
         after = os.listdir("/proc/self/fd")
@@ -77,7 +77,7 @@ class TestCVE_2020_27351(unittest.TestCase):
         Cycle(self.GOOD_DEB).deb.gettar("control.tar.gz", "gzip").extractdata(
             "control"
         )
-        warnings.filterwarnings("ignore", category=ResourceWarning)
+        warnings.filterwarnings("ignore", category=Warning)
         gc.collect()
         warnings.resetwarnings()
         after = os.listdir("/proc/self/fd")
