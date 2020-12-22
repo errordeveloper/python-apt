@@ -4,8 +4,9 @@ python-apt (1.8.4.3) buster-security; urgency=high
     apt_inst.DebFile caused a segmentation fault (Closes: #977000):
     - python/arfile.cc: Fix segmentation fault when opening fd, track lifetime
       correctly
+  * REGRESSION UPDATE: arfile: Collect file<->deb/ar reference cycles
 
- -- Julian Andres Klode <jak@debian.org>  Wed, 09 Dec 2020 23:12:37 +0100
+ -- Julian Andres Klode <jak@debian.org>  Tue, 22 Dec 2020 20:38:06 +0100
 
 python-apt (1.8.4.2) buster-security; urgency=high
 
