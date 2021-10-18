@@ -16,12 +16,12 @@ submit them.
 Repositories
 ^^^^^^^^^^^^
 
-https://anonscm.debian.org/cgit/apt/python-apt.git
+https://salsa.debian.org/apt-team/python-apt.git
 
     This is the official Debian repository of python-apt.
     You can clone it using git by doing::
 
-      git clone git://anonscm.debian.org/apt/python-apt.git
+      git clone git://salsa.debian.org/apt-team/python-apt.git
 
 
     All code which will be uploaded to Debian is here.
