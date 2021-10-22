@@ -69,7 +69,11 @@ class TestTagFile(testcommon.TestCase):
         # test once for compressed and uncompressed
         for testfile in glob.glob(tagfilepath):
             # test once using the open() method and once using the path
-            for f in [testfile, open(testfile)]:
+            tagfile = apt_pkg.TagFile(testfile)
+            for i, stanza in enumerate(tagfile):
+                pass
+            self.assertEqual(i, 2)
+            with open(testfile) as f:
                 tagfile = apt_pkg.TagFile(f)
                 for i, stanza in enumerate(tagfile):
                     pass
