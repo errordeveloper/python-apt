@@ -40,6 +40,8 @@ static PyObject* pkgSrcRecordFiles_item(PyObject *Self, Py_ssize_t i) {
       case 3:
          return Py_BuildValue("s", f.Type.c_str());
    }
+
+   PyErr_Format(PyExc_IndexError, "index %d out of range, consider using the properties instead", i);
    return NULL;
    APT_IGNORE_DEPRECATED_POP
 }
