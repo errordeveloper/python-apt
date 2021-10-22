@@ -1,3 +1,18 @@
+python-apt (2.3.0) unstable; urgency=medium
+
+  [ Edmund Blomley ]
+  * Fix pages deploy job only statement.
+  * Fix URL to python-apt Repository in Documentation.
+
+  [ Julian Andres Klode ]
+  * Python 3.10 fixes:
+    - SourceRecordFiles: Set exception in __getitem__
+      Fixes a regression with Python 3.10 in debug mode
+    - test_all: Avoid using deprecated distutils package
+    - test_tagfile: Avoid leaking file descriptor
+
+ -- Julian Andres Klode <jak@debian.org>  Fri, 22 Oct 2021 12:21:54 +0200
+
 python-apt (2.2.1) unstable; urgency=medium
 
   [ Debian Janitor ]
