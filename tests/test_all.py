@@ -22,8 +22,7 @@ def get_library_dir():
     # Find the path to the built apt_pkg and apt_inst extensions
     if not os.path.exists("../build"):
         return None
-    from distutils.util import get_platform
-    from distutils.sysconfig import get_python_version
+    from sysconfig import get_platform, get_python_version
     # Set the path to the build directory.
     plat_specifier = ".%s-%s" % (get_platform(), get_python_version())
     library_dir = "../build/lib%s%s" % (plat_specifier,
