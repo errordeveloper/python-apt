@@ -23,7 +23,7 @@ import signal
 import sys
 
 import types
-from typing import Callable, Optional, Union
+from typing import Any, Callable, Optional, Union
 
 
 import apt_pkg
@@ -105,7 +105,7 @@ class AcquireProgress(base.AcquireProgress, TextProgress):
         # type: (Optional[io.TextIOBase]) -> None
         TextProgress.__init__(self, outfile)
         base.AcquireProgress.__init__(self)
-        self._signal = None  # type: Union[Callable[[signal.Signals, types.FrameType], None], int, signal.Handlers, None] # noqa
+        self._signal = None  # type: Union[Callable[[int, Optional[types.FrameType]], Any], int, signal.Handlers, None] # noqa
         self._width = 80
         self._id = 1
 
