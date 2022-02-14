@@ -62,6 +62,24 @@ static PyObject *PkgSourceListReadMainList(PyObject *Self,PyObject *Args)
    return HandleErrors(PyBool_FromLong(res));
 }
 
+static char *doc_PkgSourceListRead =
+    "read(filename) -> bool\n\n"
+    "Read a given source list.";
+static PyObject *PkgSourceListRead(PyObject *Self, PyObject *args, PyObject *kwds)
+{
+   PyApt_Filename filename;
+   char *kwlist[] = {"filename",  NULL};
+   if (PyArg_ParseTupleAndKeywords(args, kwds, "O&:__init__", kwlist,
+                                   PyApt_Filename::Converter,
+                                   &filename) == 0) {
+       return NULL;
+   }
+   pkgSourceList *list = GetCpp<pkgSourceList*>(Self);
+   bool res = list->Read(filename);
+
+   return HandleErrors(PyBool_FromLong(res));
+}
+
 static char *doc_PkgSourceListGetIndexes =
     "get_indexes(acquire: apt_pkg.Acquire[, all: bool=False]) -> bool\n\n"
     "Add all indexes (i.e. stuff like Release files, Packages files)\n"
@@ -86,6 +104,7 @@ static PyMethodDef PkgSourceListMethods[] =
 {
    {"find_index",PkgSourceListFindIndex,METH_VARARGS,doc_PkgSourceListFindIndex},
    {"read_main_list",PkgSourceListReadMainList,METH_VARARGS,doc_PkgSourceListReadMainList},
+   {"read",(PyCFunction) PkgSourceListRead,METH_VARARGS|METH_KEYWORDS,doc_PkgSourceListRead},
    {"get_indexes",PkgSourceListGetIndexes,METH_VARARGS,doc_PkgSourceListGetIndexes},
    {}
 };
